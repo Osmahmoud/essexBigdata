@@ -1,15 +1,17 @@
 ---
 title: "Practical 1"
 author: "Osama Mahmoud"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{practical1}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+```{r echo=FALSE}
+knitr::opts_chunk$set(comment = NA)
+```
 
-## Basics in Statistics
+## Basics concepts
 
 To get you familiar with underlying concepts of cluster analysis (unsupervised learning) and classification (supervised learning), we would use the `measure` data set, which is included within the `essexBigdata` package, to illustrate some basic concepts in statistics e.g. covariance, correlation and Euclidean distance.
 
@@ -44,12 +46,65 @@ For a sample of $q$-dimensional observations, $x_{1}, ... , x_{n}$ with $x_{i} \
 
 We can use `R` to calculate the covariance matrix for the `measure` data set. To begin with, load the `measure` data
 
-``` {r}
-#data(measure, package = "essexBigdata")
+```{r results='hide', message=FALSE}
+require(essexBigdata)
+data(measure, package = "essexBigdata")
+# Details of the 'measure' dataset can be shown by:
+?measure
 ```
 
-Next, you can show the first six observations and details of the `measure` data sets
+When loading a dataset in `R`, it is always a good idea to carry out a check. I tend to use:
+
+```{r eval=FALSE}
+head(measure)
+dim(measure)
+colnames(measure)
+```
+
+### Calculation of covariance matrix
+
+Covariance matrix for measurements of the `measure` data can be calculated using:
+```{r}
+cov(measure[, c("chest", "waist", "hips")])
+```
+
+For observations of females only, we can use
+```{r}
+cov(subset(measure, gender == "female")[, c("chest", "waist", "hips")])
+```
+
+We can use the same concept to get the covariance matrix based on data for males only. **Could you write the corresponding `R` command to carry this out?** you should get the following result.
+```{r echo=FALSE}
+cov(subset(measure, gender == "male")[, c("chest", "waist", "hips")])
+```
+
+### Correlation
+
+The covariance depends on the scale of each variable. Correlation is defined as a standardised covariance by the two standard deviations of the two
+variables $X_{i}$ and $X_{j}$. Pearson's correlation coefficient is denoted by $\rho_{i,j}$ and defined by
+
+$$\rho_{i,j} = \frac{Cov(X_{i}, X_{i})}{\sigma_{i} . \sigma_{j}},$$
+
+where $\sigma_{i} = \sqrt{\sigma_{i}^2}$. Note that: $-1 \leq \rho_{i,j} \leq 1$
+
+Correlation coefficients for measurements of the `measure` data can be calculated using:
 
 ```{r}
-#head(measure)
+cor(measure[, c("chest", "waist", "hips")])
+```
+
+### Euclidean distance
+
+Often we are interested to measure how similar (close) are the multivariate observations. For example, cluster analysis uses distance measures between the observations to group "similar" observations together. A common distance measure is the `Euclidean distance`:
+
+$$d_{i,j} = \sqrt{\underset{k=1}{\overset{q}{\sum}}(x_{ik} - x_{jk})^2},$$
+
+where $q$ is number of variables. While $x_{ik}$ and $x_{jk}$ are values of the $k$-th variable of observations $i$ and $j$ respectively.
+
+Distance matrix for the observations of the `measure` data set can be calculated using `dist` function:
+
+```{r}
+# variables are normailsed (centered at mean and scaled by the standard deviations)
+x <- dist(scale(measure[, c("chest", "waist", "hips")]))
+as.dist(round(as.matrix(x), 2)[1:12, 1:12])
 ```

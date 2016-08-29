@@ -1,12 +1,13 @@
 Package: essexBigdata
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Clustering and classification package for Essex summer school
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Authors@R: person("Osama", "Mahmoud", email = "o.mahmoud@bristol.ac.uk", role = c("aut", "cre"))
+Description: Package for the 'clustering and classification with applications in R' course (BD017) at the Essex big data summer school.
+Depends: R (>= 3.0.0)
+License: GPL-2 | GPL-3
 LazyData: TRUE
-Suggests: knitr,
-    rmarkdown
+Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
+RoxygenNote: 5.0.1
+Repository: Osmahmoud

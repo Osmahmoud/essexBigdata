@@ -1,3 +1,4 @@
+devtools::document()
 devtools::build_vignettes()
 devtools::build()
 devtools::install(build_vignettes = TRUE)
@@ -5,4 +6,5 @@ devtools::install(build_vignettes = TRUE)
 library(essexBigdata)
 data("measure")
 head(measure)
-vignette("practical1")
+vignette("practical1", package = "essexBigdata")
+?measure
