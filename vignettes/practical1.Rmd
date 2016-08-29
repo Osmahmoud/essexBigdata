@@ -1,0 +1,55 @@
+---
+title: "Practical 1"
+author: "Osama Mahmoud"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{practical1}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Basics in Statistics
+
+To get you familiar with underlying concepts of cluster analysis (unsupervised learning) and classification (supervised learning), we would use the `measure` data set, which is included within the `essexBigdata` package, to illustrate some basic concepts in statistics e.g. covariance, correlation and Euclidean distance.
+
+### Covariance
+
+The covariance of two random variables $X_{i}$ and $X_{j}$, denoted by $\sigma_{i,j}$, is a measure of linear dependence and defined by:
+
+$$\sigma_{i,j} = Cov(X_{i}, X_{j}) = E[(X_{i} - \mu_{i})(X_{j} - \mu{j})],$$
+
+with $\mu_{i} = E(X_{i})$ and $\mu_{j} = E(X_{j})$.
+
+Note that, when $i = j$ we observe that the covariance $Cov(X_{i}, X_{i})$ is the variance of the
+random variable $X_{i}$ which is denoted by $\sigma_{i}^2$ and can be defined as:
+
+$$\sigma_{i}^2 = Cov(X_{i}, X_{i}) = E(X_{i} - \mu_{i})^2.$$
+
+Larger absolute values of the covariance imply a higher degree of linear dependence between the two variables.
+
+#### Covariance matrix
+
+For q-dimensional multivariate random vectors $X = (X_{1}, ... , X_{q})$, we have $q$ variances $\sigma_{i}^2$ for $i = 1, ... , q$ and $\frac{q(q-1)}{2}$ covariances. The variances and covariances can be arranged in $q × q$ symmetric matrix $\Sigma$ as follows:
+
+$$\Sigma = 
+\begin{pmatrix}
+  \sigma_{1}^2 & \sigma_{1,2} & \cdots & \sigma_{1,q} \\
+  \sigma_{2,1} & \sigma_{2}^2 & \cdots & \sigma_{2,q} \\
+  \vdots  & \vdots  & \ddots & \vdots  \\
+  \sigma_{q,1} & \sigma_{q,2} & \cdots & \sigma_{q}^2
+\end{pmatrix}$$
+
+For a sample of $q$-dimensional observations, $x_{1}, ... , x_{n}$ with $x_{i} \in \mathbb{\mathbb{R}}^{q}$ for $i = 1, ... , n$, we can estimate the covariance matrix $\Sigma$ by estimating corresponding variances and covariances from the given sample.
+
+We can use `R` to calculate the covariance matrix for the `measure` data set. To begin with, load the `measure` data
+
+``` {r}
+#data(measure, package = "essexBigdata")
+```
+
+Next, you can show the first six observations and details of the `measure` data sets
+
+```{r}
+#head(measure)
+```
