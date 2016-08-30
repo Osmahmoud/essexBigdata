@@ -106,8 +106,6 @@ d.pottery <- dist(s.pottery)
 plot(hclust(d.pottery, method="complete"),labels=(as.character(pottery$kiln)),
      cex=.75, main="",xlab="complete-linkage",ylab="level",sub="")
 
-
-
 par(mfrow=c(1,1))
 plot(hclust(d.pottery, method="complete"),labels=(as.character(pottery$kiln)),
      hang=-1,cex=.75, main="",xlab="complete-linkage",ylab="level",sub="")

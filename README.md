@@ -41,6 +41,10 @@ vignette("practical1", package = "essexBigdata")
 
 -   Practical2 - Cluster analysis
 
+``` r
+vignette("practical2", package = "essexBigdata")
+```
+
 Further reading
 ---------------
 

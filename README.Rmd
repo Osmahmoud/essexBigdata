@@ -43,7 +43,11 @@ vignette("practical1", package = "essexBigdata")
 ```
 
   * Practical2 - Cluster analysis
-  
+
+```{r eval=FALSE}
+vignette("practical2", package = "essexBigdata")
+```
+
 ## Further reading
 
   - **Everitt, B., Hothorn, T. (2011)**, [An Introduction to Applied Multivariate Analysis with R](http://link.springer.com/book/10.1007%2F978-1-4419-9650-3) - Springer-Verlag.
