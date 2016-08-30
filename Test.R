@@ -8,3 +8,4 @@ data("measure")
 head(measure)
 vignette("practical1", package = "essexBigdata")
 ?measure
+vignette("practical2", package = "essexBigdata")

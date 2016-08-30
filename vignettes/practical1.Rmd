@@ -1,6 +1,6 @@
 ---
 title: "Practical 1"
-author: "Osama Mahmoud"
+author: "Osama Mahmoud and Berthold Lausen"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{practical1}
@@ -11,7 +11,7 @@ vignette: >
 knitr::opts_chunk$set(comment = NA)
 ```
 
-## Basics concepts
+## Basic concepts
 
 To get you familiar with underlying concepts of cluster analysis (unsupervised learning) and classification (supervised learning), we would use the `measure` data set, which is included within the `essexBigdata` package, to illustrate some basic concepts in statistics e.g. covariance, correlation and Euclidean distance.
 

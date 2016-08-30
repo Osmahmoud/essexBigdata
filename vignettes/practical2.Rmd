@@ -1,0 +1,78 @@
+---
+title: "Practical 2"
+author: "Osama Mahmoud and Berthold Lausen"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{practical2}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Cluser analysis
+
+K-means clustering aims to partition a set of $n$ observations with $p$ dimensional observations into k distinct and non-overlapping clusters. To do this, one has to specify k, the number of clusters. The idea is to estimate a clustering (partition) of the $n$ observations which has a within-cluster variation as small as possible.
+
+We start by simulating data of two groups with bivariate normal distributed observations to illustrate the `k-means clustering` technique.
+
+## K-means clustering
+
+```{r}
+set.seed(02022015)    # to 
+x <- matrix(rnorm(50*2), ncol=2)
+x[1:25,1] <- x[1:25,1]+3
+x[1:25,2] <- x[1:25,2]-4
+```
+
+We can plot the simulated data
+```{r, cache=TRUE}
+library("ggplot2")
+G.data    <- ggplot(as.data.frame(x), aes(V1,V2)) + geom_point()
+```
+
+We can use the function `kmeans` to group (i.e., cluster) observations into two groups
+```{r}
+my.km <- kmeans(x, centers=2, nstart=20)
+my.km$cluster
+```
+Note that the parameter of `centers`, in the `kmeans` function above, is used to input the number of required clusters. Whilst the `nstart` parameter determines number of random sets to start with as a starting points for the clustering algorithm. *It is often recommended to try several random starts (`nstart` > 1) to get a better estimation*.
+
+After calculating observations' assignment, we can now plot the obtained underlying clusters. Assignments of observations can be plotted next to data without assignment for illustration purpose.
+```{r, results='hold'}
+G.clust   <- ggplot(as.data.frame(x), aes(V1,V2)) + geom_point(color=my.km$cluster)
+G.data; G.clust
+```
+
+If we try to cluster data into three groups, we can carry out a similar procedure
+```{r}
+my.km <- kmeans(x, centers=3, nstart=20)
+my.km$cluster
+```
+
+```{r, results='hold'}
+G.clust   <- ggplot(as.data.frame(x), aes(V1,V2)) + geom_point(color=my.km$cluster)
+G.data; G.clust
+```
+
+Four clusters:
+```{r}
+my.km <- kmeans(x, centers=4, nstart=20)
+my.km$cluster
+```
+
+```{r, results='hold'}
+G.clust   <- ggplot(as.data.frame(x), aes(V1,V2)) + geom_point(color=my.km$cluster)
+G.data; G.clust
+```
+
+Five clusters:
+```{r}
+my.km <- kmeans(x, centers=5, nstart=20)
+my.km$cluster
+```
+
+```{r, results='hold'}
+G.clust   <- ggplot(as.data.frame(x), aes(V1,V2)) + geom_point(color=my.km$cluster)
+G.data; G.clust
+```
+
+## hierarchical clustering

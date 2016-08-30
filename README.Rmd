@@ -36,11 +36,20 @@ install.packages("essexBigdata")
 
 The `essexBigdata` package includes a number of practical files to guide participants to applications of clustering and classification techniques using R. 
 
-  * Practical1 - Clustering
+  * Practical1 - Basic concepts
   
 ```{r eval=FALSE}
 vignette("practical1", package = "essexBigdata")
 ```
 
+  * Practical2 - Cluster analysis
+  
+## Further reading
 
+  - **Everitt, B., Hothorn, T. (2011)**, [An Introduction to Applied Multivariate Analysis with R](http://link.springer.com/book/10.1007%2F978-1-4419-9650-3) - Springer-Verlag.
 
+  - **Everitt, B., Landau, S., Leese, M., Stahl, D. (2011)**, [Cluster Analysis](http://eu.wiley.com/WileyCDA/WileyTitle/productCd-EHEP002266.html), Wiley.
+
+  - **James, G., Witten, D., Hastie, T., Tibshirani, R. (2013)**, [An Introduction to Statistical Learning with Applications in R](http://www.springer.com/gb/book/9781461471370), Springer-Verlag.
+  
+  - **Mahmoud, O. (2015)**, [Improving Statistical Learning within Functional Genomic Experiments by means of Feature Selection](https://www.researchgate.net/publication/304704707_Improving_Statistical_Learning_within_Functional_Genomic_Experiments_by_means_of_Feature_Selection), PhD thesis. University of Essex. Available from: [The Albert Sloman Library](http://serlib0.essex.ac.uk/search~S5?/aMahmoud%2C+Osama/amahmoud+osama/-3%2C-1%2C0%2CB/frameset&FF=amahmoud+osama&1%2C1%2C).
