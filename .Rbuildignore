@@ -1,2 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^.travis.yml$
+^README.Rmd$
+^maeb7.pdf$
+^slides.pdf$
+^Test.R$
