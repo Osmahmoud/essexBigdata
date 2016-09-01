@@ -3,6 +3,8 @@
 Clustering and Classification in R: Osama Mahmoud and Berthold Lausen
 ---------------------------------------------------------------------
 
+[![Build Status](https://travis-ci.org/Osmahmoud/essexBigdata.svg?branch=master)](https://travis-ci.org/Osmahmoud/essexBigdata)
+
 Notes, practicals and R code for the up coming [course](https://www.essex.ac.uk/iads/events/summer-school.aspx) at the University of Essex Big Data and Analytics Summer School, September 2016.
 
 -   PDF version of course [slides](https://raw.githubusercontent.com/Osmahmoud/essexBigdata/master/slides.pdf).
