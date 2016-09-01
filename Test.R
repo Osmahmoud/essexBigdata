@@ -4,8 +4,14 @@ devtools::build()
 devtools::install(build_vignettes = TRUE)
 #install.packages("/media/PhD/GitHub/essexBigdata_0.1.0.tar.gz", repos = NULL, type = "source")
 library(essexBigdata)
+vignette("practical1", package = "essexBigdata")
+
+
 data("measure")
 head(measure)
-vignette("practical1", package = "essexBigdata")
+
 ?measure
 vignette("practical2", package = "essexBigdata")
+
+
+
