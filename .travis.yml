@@ -11,3 +11,4 @@ before_install:
 
 r_packages:
   - drat
+
