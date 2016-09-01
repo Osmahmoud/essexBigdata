@@ -1,13 +1,21 @@
 language: r
 sudo: true
+
 notifications:
   email:
     on_success: change
     on_failure: change
+
 before_install:
 - tlmgr install fancyvrb units
+
 r_packages:
 - drat
+
+after_success:
+  - wget https://raw.githubusercontent.com/Osmahmoud/drat/master/deploy.sh
+  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash deploy.sh
+
 env:
   global:
-    secure: gGGPNSpE9qKfNwWLXDc6R02Rt3Od4Ghu/L/hD0/qxA6wpie9vY1SJyPLFrEuq7w8WwqaIwMVQK1KVPrDSQroFB1XjxMADT5L6VrsC+YWyNZAz0MeiSvC8BcbjTCSdidZ0YUTXxyCQmvqliRPdHnzEpvQryRHVm1quXAsRaJ+t2z5+xbTrTpC6/CDvk+wf/CYdvgSHaEr7BdLtVUA83LpcS3s7ac1uHNfYjmWYEdAQfsWkCo0LYwn9tf0BH66zxyDrsboPWO7tpZiOpUXX7nk1vOAsflp7J0WoywX8x+5vJjrqcnd4Mrim67+a+ddEKg80BKHGr9+y57mg0eX5TV2+omcQI6mYGHoAChy/0f7GlbL3T4FObBbTtQzYz26ZKjrgj8dbYH8cnMkbeUy5KYv4GxO3rnEUFV+7uZCusLmXxaaVIMbojbknQjjaGI21BQY65WX4QrekjhmJUxjkyk4lu3lk9oeBem9Uul/X4yCueY3R3zclbxh7MsYy39UwBSymT4uRwWmECahcfhF377OxO3nPCOTrncM6Q5dxWNJgK/Ej9C/HH4i3wwUiw3mgE2YvBX3O9eyFc/PJILIzWucx/J71dNh8ih9SwIqdD7S4WcoDhCxX/1ZMmsw8cXtlJhfZ8zzigVhVn6k5q1M+cHsr0jWY1OohiTMz9iT+L2DWDw=
+    secure: hdE7fp33wWeRWiRw1IK/f3BuNK2zDWCjaSwrgXW6VRrygilL9GIAozy8ftD6LaTgBicl5OjWEWWX6osbVhF8j7qH+BbV5fHRN8fMeaDc22WiB0fVX7EzSx5uvjjMSo771tV4WE05WFyrsVtBDUAqUk3JWnMWOzjcOC9O37IwZGzKautaDwVYPxpgBkNOIryi5NqyPfkqAVyf3FYedaCiAxoDSP6M2n8v44ho3aeMlDhd5cZd7vEnwsdxEZMRyLndcCxD9dl7UQn6bDKPijQoRIu/BusPxkCzik0hEnJfPjXo6A09bnV0yHheUWVRJHADd7L746Ipd471pmLYT1+yu86bRBexgq40yXRHpcVDSZgD0GwsnTLaSAIMaXhAlDP/FUjpA/6NUtZmhC0MnmOJriCL77eIUYKNXrwJn4KbMf5V87MYJKIYrjrktzrIml4cMYLXXSv8UM56ltfyWVoeRragoBWe8VqQGiLcguN6g1Qjf+yt8vcwWIe8RfkMYLMXZEOrVl5H7Y9umxKXKPSIMgM8xlW9FCHJ2gqTzd79WdteM2Hovc0/RjmjWVHUQKWoZnjTa1zgxOrqxzBhbO0mdlT1FB5YvH070eRocPFHivDexB5Qkbf5MhZQA3kTf0LKW1o6EAzYn4GhDxi85MIikcBHK1iWQCHAF/hwPlDI6ow=
