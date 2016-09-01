@@ -1,0 +1,13 @@
+language: r
+sudo: true
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+
+before_install:
+  - tlmgr install fancyvrb units
+
+r_packages:
+  - drat
