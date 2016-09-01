@@ -1,14 +1,13 @@
 language: r
 sudo: true
-
 notifications:
   email:
     on_success: change
     on_failure: change
-
 before_install:
-  - tlmgr install fancyvrb units
-
+- tlmgr install fancyvrb units
 r_packages:
-  - drat
-
+- drat
+env:
+  global:
+    secure: gGGPNSpE9qKfNwWLXDc6R02Rt3Od4Ghu/L/hD0/qxA6wpie9vY1SJyPLFrEuq7w8WwqaIwMVQK1KVPrDSQroFB1XjxMADT5L6VrsC+YWyNZAz0MeiSvC8BcbjTCSdidZ0YUTXxyCQmvqliRPdHnzEpvQryRHVm1quXAsRaJ+t2z5+xbTrTpC6/CDvk+wf/CYdvgSHaEr7BdLtVUA83LpcS3s7ac1uHNfYjmWYEdAQfsWkCo0LYwn9tf0BH66zxyDrsboPWO7tpZiOpUXX7nk1vOAsflp7J0WoywX8x+5vJjrqcnd4Mrim67+a+ddEKg80BKHGr9+y57mg0eX5TV2+omcQI6mYGHoAChy/0f7GlbL3T4FObBbTtQzYz26ZKjrgj8dbYH8cnMkbeUy5KYv4GxO3rnEUFV+7uZCusLmXxaaVIMbojbknQjjaGI21BQY65WX4QrekjhmJUxjkyk4lu3lk9oeBem9Uul/X4yCueY3R3zclbxh7MsYy39UwBSymT4uRwWmECahcfhF377OxO3nPCOTrncM6Q5dxWNJgK/Ej9C/HH4i3wwUiw3mgE2YvBX3O9eyFc/PJILIzWucx/J71dNh8ih9SwIqdD7S4WcoDhCxX/1ZMmsw8cXtlJhfZ8zzigVhVn6k5q1M+cHsr0jWY1OohiTMz9iT+L2DWDw=
