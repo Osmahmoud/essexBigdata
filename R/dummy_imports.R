@@ -1,2 +1,2 @@
-#' @import ggplot2 HSAUR2 clue
+#' @import ggplot2 HSAUR2 clue ISLR MASS ipred tree randomForest
 NULL

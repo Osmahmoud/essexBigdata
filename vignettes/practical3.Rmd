@@ -1,0 +1,195 @@
+---
+title: "Practical 3"
+author: "Osama Mahmoud and Berthold Lausenr"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{practical3}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Classification
+
+We would use a dataset named `Default` from the R package `ISLR` to illustrate some classification approaches. First, we need to load in the data
+
+```{r}
+data("Default", package = "ISLR")
+str(Default)
+head(Default)
+library(ISLR)
+?Default          # to show details of the data
+```
+
+Plot `income` and `balance` for a random sample from customers who are not defaulted on their dept in blue (i.e., subset as the whole set is too large) and for all customers who defaulted on their dept in red.
+
+```{r, fig.width=7, fig.height=4}
+plot(income ~ balance, data = Default[(Default$default=="No") & (runif(10000)>.95),], pch="o", col=4,
+     xlim=c(0,3000), ylim=c(0,70000), xlab="balance", ylab="income", main="(a)", cex.lab=1.5)
+points(income ~ balance , data=Default[Default$default=="Yes",], pch="+", col=2)
+```
+
+Boxplots for both variables by default:
+
+```{r, fig.width=7, fig.height=4}
+par(mfrow=c(1,2))
+boxplot(balance ~ default, data=Default,ylab="balance",main="(b)",xlab="default",
+        col=c(4,2),cex.lab=1.5)
+boxplot(income ~ default, data=Default,ylab="income",xlab="default",
+        col=c(4,2),cex.lab=1.5)
+```
+
+## Logistic regression
+
+Fitting a linear regression line - using least square method - for default as `response variable` on balance as a `predictor variable`.
+
+```{r, fig.width=7, fig.height=4}
+mylinearclassifier <- lm((as.numeric(default) - 1) ~ balance, data=Default)
+summary(mylinearclassifier)
+plot((as.numeric(default) -1) ~ balance, data=Default, cex=.5, col=4,
+     ylab="probability of default",main="(a)",cex.lab=1.5,xlim=c(0,3000))
+abline(mylinearclassifier,lwd=4,col=1)
+```
+
+Fitting a logistic regression model for default as `response variable` (treated as binary here) on balance as a `predictor variable`.
+
+```{r, fig.width=7, fig.height=4}
+mylogisticclassifier <- glm(default ~ balance,data=Default,family=binomial )
+summary(mylogisticclassifier)
+
+plot((as.numeric(default) -1) ~ balance, data=Default,cex=.5,col=4,
+     ylab="probability of default",main="(b)",cex.lab=1.5,xlim=c(0,3000))
+curve(predict(mylogisticclassifier,data.frame(balance=x),type="resp"),
+      lwd=4,add=TRUE,col=1)
+```
+
+## Bayes classifier
+
+Histogram of *absolute frequencies* of monthly credit card balance by the two classes no default or default on monthly credit card payments. It illustrates the distribution of monthly credit card balance by
+the two classes no default or default on monthly credit card payments.
+
+```{r}
+hist(Default$balance[Default$default=="No"], breaks=c(200*(0:15)),col=4,density=10,
+     xlim=c(0,3000),ylim=c(0,1500),angle = -45,
+     freq=TRUE,xlab="balance",ylab="frequency",cex.lab=1.5,main="(a)")
+par(new=TRUE)
+hist(Default$balance[Default$default=="Yes"],breaks=c(200*(0:15)), col=2,density=10,
+     xlim=c(0,3000), ylim=c(0,1500),angle = 45,
+     freq=TRUE,axes=FALSE,ann=FALSE)
+text(250,1500,"no default",col=4,cex=1.5)
+text(2500,200,"default",col=2,cex=1.5)
+```
+
+Histogram of *relative frequencies* of monthly credit card balance and nonparametric kernel estimates of the probability density functions by the two classes no default or default on monthly credit card payments. It illustrates the conditional distribution for the two classes no default or default on monthly credit card payments.
+
+```{r}
+hist(Default$balance[Default$default=="No"],breaks=c(200*(0:15)),col=4,density=10,
+     xlim=c(0,3000),ylim=c(0,0.0014),angle = -45,
+     freq=FALSE,axes=FALSE,ann=FALSE)
+par(new=TRUE)
+hist(Default$balance[Default$default=="Yes"],breaks=c(200*(0:15)), col=2,density=10,
+     xlim=c(0,3000),ylim=c(0,0.0014), angle = 45,
+     freq=FALSE,axes=FALSE,ann=FALSE)
+
+par(new=TRUE)
+plot(density(Default$balance[Default$default=="Yes"]),
+     xlim=c(0,3000),ylim=c(0,0.0014),
+     col=2,lwd=4,xlab="balance",ylab="density",cex.lab=1.5,main="(b)")
+lines(density(Default$balance[Default$default=="No"]),
+      xlim=c(0,3000),ylim=c(0,0.0014),
+      col=4,lwd=4)
+text(250,.001,"no default",col=4,cex=1.5)
+text(2500,.001,"default",col=2,cex=1.5)
+```
+
+## Linear discriminant analysis
+
+```{r}
+library(MASS)
+lda.Default <- lda(default ~ balance + income , data=Default)
+lda.Default
+
+default.predicted <- predict(lda.Default)$class
+table(default.predicted,Default$default)
+
+
+table(Default$default)
+table(default.predicted)
+
+(table(default.predicted,Default$default)[1,2] +
+   table(default.predicted,Default$default)[2,1]) / (dim(Default)[1])
+
+qda.Default <- qda(default ~ balance + income , data=Default)
+qda.Default
+
+default.predicted <- predict(qda.Default)$class
+table(default.predicted,Default$default)
+
+
+table(Default$default)
+table(default.predicted)
+
+(table(default.predicted,Default$default)[1,2] +
+   table(default.predicted,Default$default)[2,1]) / (dim(Default)[1])
+```
+
+## Misclassification error
+
+```{r}
+library(ipred)
+
+mypredict.lda <- function(object, newdata)
+  predict(object, newdata = newdata)$class
+mypredict.knn <- function(object, newdata)
+  predict(object, newdata = newdata)$class
+
+set.seed(25012015)
+
+
+errorest(default ~ ., data=Default, model=lda,
+         estimator = c("cv"),
+         est.para=control.errorest(k=10), predict= mypredict.lda)
+
+errorest(default ~ ., data=Default, model=lda,
+         estimator = c("boot"),
+         est.para=control.errorest(nboot=200,strat=TRUE), predict= mypredict.lda)
+```
+
+## CART - tree based classifier
+
+```{r}
+library(tree)
+
+data(GlaucomaMVF)
+str(GlaucomaMVF)
+tree.glaucoma <- tree(Class ~ ., data=GlaucomaMVF[,c(1:62,67)])
+tree.glaucoma
+summary(tree.glaucoma)
+plot(tree.glaucoma)
+text(tree.glaucoma)
+
+prune.glaucoma <- prune.misclass(tree.glaucoma, best=5)
+plot(prune.glaucoma)
+text(prune.glaucoma)
+
+prune.glaucoma
+```
+
+## Random Forest
+
+```{r}
+library(randomForest)
+
+forest.glaucoma <- randomForest(Class ~ ., data=GlaucomaMVF[,c(1:62,67)])
+forest.glaucoma
+
+mypredict.randomForest <- function(object, newdata)
+  predict(object, newdata = newdata, type = c("response"))
+
+errorest(Class ~ ., data=GlaucomaMVF[,c(1:62,67)],model=randomForest,
+         estimator = "cv", predict= mypredict.randomForest)
+errorest(Class ~ ., data=GlaucomaMVF[,c(1:62,67)],model=randomForest,
+         estimator = "boot", predict= mypredict.randomForest)
+
+```
+
