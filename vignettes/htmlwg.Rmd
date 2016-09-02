@@ -1,0 +1,13 @@
+---
+title: "Demo list"
+author: "Osama Mahmoud"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{htmlwg}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+  * Basic concepts: [Practical 1](practical1.html), [R code](practical1.R), [Rmd](practical1.Rmd)
+  * Cluster analysis: [Practical 2](practical2.html), [R code](practical2.R), [Rmd](practical2.Rmd)
