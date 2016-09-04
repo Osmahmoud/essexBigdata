@@ -65,10 +65,9 @@ curve(predict(mylogisticclassifier,data.frame(balance=x),type="resp"),
 
 ## Bayes classifier
 
-Histogram of *absolute frequencies* of monthly credit card balance by the two classes no default or default on monthly credit card payments. It illustrates the distribution of monthly credit card balance by
-the two classes no default or default on monthly credit card payments.
+Histogram of *absolute frequencies* of monthly credit card balance by the two classes no default or default on monthly credit card payments. It illustrates the distribution of monthly credit card balance by the two classes no default or default on monthly credit card payments.
 
-```{r}
+```{r, fig.width=7, fig.height=4}
 hist(Default$balance[Default$default=="No"], breaks=c(200*(0:15)),col=4,density=10,
      xlim=c(0,3000),ylim=c(0,1500),angle = -45,
      freq=TRUE,xlab="balance",ylab="frequency",cex.lab=1.5,main="(a)")
@@ -82,7 +81,7 @@ text(2500,200,"default",col=2,cex=1.5)
 
 Histogram of *relative frequencies* of monthly credit card balance and nonparametric kernel estimates of the probability density functions by the two classes no default or default on monthly credit card payments. It illustrates the conditional distribution for the two classes no default or default on monthly credit card payments.
 
-```{r}
+```{r, fig.width=7, fig.height=4}
 hist(Default$balance[Default$default=="No"],breaks=c(200*(0:15)),col=4,density=10,
      xlim=c(0,3000),ylim=c(0,0.0014),angle = -45,
      freq=FALSE,axes=FALSE,ann=FALSE)
@@ -109,22 +108,26 @@ library(MASS)
 lda.Default <- lda(default ~ balance + income , data=Default)
 lda.Default
 
+# prediction
 default.predicted <- predict(lda.Default)$class
-table(default.predicted,Default$default)
-
+table(default.predicted, Default$default)
 
 table(Default$default)
 table(default.predicted)
 
-(table(default.predicted,Default$default)[1,2] +
+# Missclassification error rate
+M.err <- (table(default.predicted,Default$default)[1,2] +
    table(default.predicted,Default$default)[2,1]) / (dim(Default)[1])
+M.err
+```
 
+```{r, echo=FALSE, eval=FALSE}
+# Quadratic Discriminant Analysis
 qda.Default <- qda(default ~ balance + income , data=Default)
 qda.Default
 
 default.predicted <- predict(qda.Default)$class
 table(default.predicted,Default$default)
-
 
 table(Default$default)
 table(default.predicted)
@@ -140,28 +143,35 @@ library(ipred)
 
 mypredict.lda <- function(object, newdata)
   predict(object, newdata = newdata)$class
-mypredict.knn <- function(object, newdata)
-  predict(object, newdata = newdata)$class
 
 set.seed(25012015)
 
-
-errorest(default ~ ., data=Default, model=lda,
-         estimator = c("cv"),
+# error estimation using CV
+errorest(default ~ ., data=Default, model=lda, estimator = c("cv"),
          est.para=control.errorest(k=10), predict= mypredict.lda)
-
-errorest(default ~ ., data=Default, model=lda,
-         estimator = c("boot"),
-         est.para=control.errorest(nboot=200,strat=TRUE), predict= mypredict.lda)
+# error estimation using bootstrap
+errorest(default ~ ., data=Default, model=lda, estimator = c("boot"),
+         est.para=control.errorest(nboot=5), predict= mypredict.lda)
 ```
 
 ## CART - tree based classifier
 
-```{r}
-library(tree)
+We use the `GlaucomaMVF` data set of the R package `ipred` to illustrate the
+construction of a decision tree. The data set has 170 observations in two classes
+(glaucoma patients, healthy subjects) and 66 predictors which are derived from a
+confocal laser scanning image of the optic nerve head, from a visual field test, a fundus photography and a measurement of the intraoccular pressure.
 
+To view the structure of the data
+
+```{r, results='hide'}
 data(GlaucomaMVF)
 str(GlaucomaMVF)
+```
+
+Fitting the tree-based classifier
+
+```{r, fig.width=7, fig.height=4}
+library(tree)
 tree.glaucoma <- tree(Class ~ ., data=GlaucomaMVF[,c(1:62,67)])
 tree.glaucoma
 summary(tree.glaucoma)
@@ -190,6 +200,4 @@ errorest(Class ~ ., data=GlaucomaMVF[,c(1:62,67)],model=randomForest,
          estimator = "cv", predict= mypredict.randomForest)
 errorest(Class ~ ., data=GlaucomaMVF[,c(1:62,67)],model=randomForest,
          estimator = "boot", predict= mypredict.randomForest)
-
 ```
-

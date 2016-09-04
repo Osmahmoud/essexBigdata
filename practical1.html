@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Osama Mahmoud and Berthold Lausen" />
+
+
+<title>Practical 1</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Practical 1</h1>
+<h4 class="author"><em>Osama Mahmoud and Berthold Lausen</em></h4>
+
+
+
+<div id="basic-concepts" class="section level2">
+<h2>Basic concepts</h2>
+<p>To get you familiar with underlying concepts of cluster analysis (unsupervised learning) and classification (supervised learning), we would use the <code>measure</code> data set, which is included within the <code>essexBigdata</code> package, to illustrate some basic concepts in statistics e.g. covariance, correlation and Euclidean distance.</p>
+<div id="covariance" class="section level3">
+<h3>Covariance</h3>
+<p>The covariance of two random variables <span class="math inline">\(X_{i}\)</span> and <span class="math inline">\(X_{j}\)</span>, denoted by <span class="math inline">\(\sigma_{i,j}\)</span>, is a measure of linear dependence and defined by:</p>
+<p><span class="math display">\[\sigma_{i,j} = Cov(X_{i}, X_{j}) = E[(X_{i} - \mu_{i})(X_{j} - \mu{j})],\]</span></p>
+<p>with <span class="math inline">\(\mu_{i} = E(X_{i})\)</span> and <span class="math inline">\(\mu_{j} = E(X_{j})\)</span>.</p>
+<p>Note that, when <span class="math inline">\(i = j\)</span> we observe that the covariance <span class="math inline">\(Cov(X_{i}, X_{i})\)</span> is the variance of the random variable <span class="math inline">\(X_{i}\)</span> which is denoted by <span class="math inline">\(\sigma_{i}^2\)</span> and can be defined as:</p>
+<p><span class="math display">\[\sigma_{i}^2 = Cov(X_{i}, X_{i}) = E(X_{i} - \mu_{i})^2.\]</span></p>
+<p>Larger absolute values of the covariance imply a higher degree of linear dependence between the two variables.</p>
+<div id="covariance-matrix" class="section level4">
+<h4>Covariance matrix</h4>
+<p>For q-dimensional multivariate random vectors <span class="math inline">\(X = (X_{1}, ... , X_{q})\)</span>, we have <span class="math inline">\(q\)</span> variances <span class="math inline">\(\sigma_{i}^2\)</span> for <span class="math inline">\(i = 1, ... , q\)</span> and <span class="math inline">\(\frac{q(q-1)}{2}\)</span> covariances. The variances and covariances can be arranged in <span class="math inline">\(q × q\)</span> symmetric matrix <span class="math inline">\(\Sigma\)</span> as follows:</p>
+<p><span class="math display">\[\Sigma = 
+\begin{pmatrix}
+  \sigma_{1}^2 &amp; \sigma_{1,2} &amp; \cdots &amp; \sigma_{1,q} \\
+  \sigma_{2,1} &amp; \sigma_{2}^2 &amp; \cdots &amp; \sigma_{2,q} \\
+  \vdots  &amp; \vdots  &amp; \ddots &amp; \vdots  \\
+  \sigma_{q,1} &amp; \sigma_{q,2} &amp; \cdots &amp; \sigma_{q}^2
+\end{pmatrix}\]</span></p>
+<p>For a sample of <span class="math inline">\(q\)</span>-dimensional observations, <span class="math inline">\(x_{1}, ... , x_{n}\)</span> with <span class="math inline">\(x_{i} \in \mathbb{\mathbb{R}}^{q}\)</span> for <span class="math inline">\(i = 1, ... , n\)</span>, we can estimate the covariance matrix <span class="math inline">\(\Sigma\)</span> by estimating corresponding variances and covariances from the given sample.</p>
+<p>We can use <code>R</code> to calculate the covariance matrix for the <code>measure</code> data set. To begin with, load the <code>measure</code> data</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(essexBigdata)
+<span class="kw">data</span>(measure, <span class="dt">package =</span> <span class="st">&quot;essexBigdata&quot;</span>)
+<span class="co"># Details of the 'measure' dataset can be shown by:</span>
+?measure</code></pre></div>
+<p>When loading a dataset in <code>R</code>, it is always a good idea to carry out a check. I tend to use:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(measure)
+<span class="kw">dim</span>(measure)
+<span class="kw">colnames</span>(measure)</code></pre></div>
+</div>
+</div>
+<div id="calculation-of-covariance-matrix" class="section level3">
+<h3>Calculation of covariance matrix</h3>
+<p>Covariance matrix for measurements of the <code>measure</code> data can be calculated using:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cov</span>(measure[, <span class="kw">c</span>(<span class="st">&quot;chest&quot;</span>, <span class="st">&quot;waist&quot;</span>, <span class="st">&quot;hips&quot;</span>)])</code></pre></div>
+<pre><code>         chest     waist     hips
+chest 6.631579  6.368421 3.000000
+waist 6.368421 12.526316 3.578947
+hips  3.000000  3.578947 5.944737</code></pre>
+<p>For observations of females only, we can use</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cov</span>(<span class="kw">subset</span>(measure, gender ==<span class="st"> &quot;female&quot;</span>)[, <span class="kw">c</span>(<span class="st">&quot;chest&quot;</span>, <span class="st">&quot;waist&quot;</span>, <span class="st">&quot;hips&quot;</span>)])</code></pre></div>
+<pre><code>         chest    waist     hips
+chest 2.277778 2.166667 1.555556
+waist 2.166667 2.988889 2.755556
+hips  1.555556 2.755556 3.066667</code></pre>
+<p>We can use the same concept to get the covariance matrix based on data for males only. <strong>Could you write the corresponding <code>R</code> command to carry this out?</strong> you should get the following result.</p>
+<pre><code>          chest     waist     hips
+chest 6.7222222 0.9444444 3.944444
+waist 0.9444444 2.1000000 3.077778
+hips  3.9444444 3.0777778 9.344444</code></pre>
+</div>
+<div id="correlation" class="section level3">
+<h3>Correlation</h3>
+<p>The covariance depends on the scale of each variable. Correlation is defined as a standardised covariance by the two standard deviations of the two variables <span class="math inline">\(X_{i}\)</span> and <span class="math inline">\(X_{j}\)</span>. Pearson’s correlation coefficient is denoted by <span class="math inline">\(\rho_{i,j}\)</span> and defined by</p>
+<p><span class="math display">\[\rho_{i,j} = \frac{Cov(X_{i}, X_{i})}{\sigma_{i} . \sigma_{j}},\]</span></p>
+<p>where <span class="math inline">\(\sigma_{i} = \sqrt{\sigma_{i}^2}\)</span>. Note that: <span class="math inline">\(-1 \leq \rho_{i,j} \leq 1\)</span></p>
+<p>Correlation coefficients for measurements of the <code>measure</code> data can be calculated using:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(measure[, <span class="kw">c</span>(<span class="st">&quot;chest&quot;</span>, <span class="st">&quot;waist&quot;</span>, <span class="st">&quot;hips&quot;</span>)])</code></pre></div>
+<pre><code>          chest     waist      hips
+chest 1.0000000 0.6987336 0.4778004
+waist 0.6987336 1.0000000 0.4147413
+hips  0.4778004 0.4147413 1.0000000</code></pre>
+</div>
+<div id="euclidean-distance" class="section level3">
+<h3>Euclidean distance</h3>
+<p>Often we are interested to measure how similar (close) are the multivariate observations. For example, cluster analysis uses distance measures between the observations to group “similar” observations together. A common distance measure is the <code>Euclidean distance</code>:</p>
+<p><span class="math display">\[d_{i,j} = \sqrt{\underset{k=1}{\overset{q}{\sum}}(x_{ik} - x_{jk})^2},\]</span></p>
+<p>where <span class="math inline">\(q\)</span> is number of variables. While <span class="math inline">\(x_{ik}\)</span> and <span class="math inline">\(x_{jk}\)</span> are values of the <span class="math inline">\(k\)</span>-th variable of observations <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> respectively.</p>
+<p>Distance matrix for the observations of the <code>measure</code> data set can be calculated using <code>dist</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># variables are normailsed (centered at mean and scaled by the standard deviations)</span>
+x &lt;-<span class="st"> </span><span class="kw">dist</span>(<span class="kw">scale</span>(measure[, <span class="kw">c</span>(<span class="st">&quot;chest&quot;</span>, <span class="st">&quot;waist&quot;</span>, <span class="st">&quot;hips&quot;</span>)]))
+<span class="kw">as.dist</span>(<span class="kw">round</span>(<span class="kw">as.matrix</span>(x), <span class="dv">2</span>)[<span class="dv">1</span>:<span class="dv">12</span>, <span class="dv">1</span>:<span class="dv">12</span>])</code></pre></div>
+<pre><code>      1    2    3    4    5    6    7    8    9   10   11
+2  2.43                                                  
+3  2.26 0.80                                             
+4  3.09 0.95 1.68                                        
+5  1.63 1.89 1.26 2.82                                   
+6  4.31 2.37 2.18 2.76 2.95                              
+7  4.79 2.38 2.72 1.98 3.94 2.03                         
+8  3.63 1.41 1.64 1.22 2.88 2.18 1.41                    
+9  3.10 1.29 0.88 1.95 1.84 1.36 2.22 1.46               
+10 3.99 1.76 1.79 1.96 2.85 0.88 1.32 1.36 1.07          
+11 2.23 2.44 1.91 3.03 1.81 3.74 4.14 2.77 2.44 3.40     
+12 2.61 2.02 1.66 2.40 2.14 3.39 3.42 2.03 2.10 2.89 0.87</code></pre>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
