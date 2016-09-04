@@ -36,3 +36,8 @@ Temporary Items
 .apdisk
 .Rproj.user
 inst/doc
+# Osama's Choices
+.Rhistory
+.fuse_hidden
+Test.R
+HierEx.pdf
