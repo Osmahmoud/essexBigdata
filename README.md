@@ -47,6 +47,18 @@ vignette("practical1", package = "essexBigdata")
 vignette("practical2", package = "essexBigdata")
 ```
 
+-   Practical3 - Classification
+
+``` r
+vignette("practical3", package = "essexBigdata")
+```
+
+-   Demo List of all vignettes
+
+``` r
+vignette("htmlwg", package = "essexBigdata")
+```
+
 Further reading
 ---------------
 

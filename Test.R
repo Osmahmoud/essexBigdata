@@ -12,6 +12,9 @@ head(measure)
 
 ?measure
 vignette("practical2", package = "essexBigdata")
+vignette("practical3", package = "essexBigdata")
+
+vignette("htmlwg", package = "essexBigdata")
 
 
 

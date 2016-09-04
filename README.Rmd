@@ -37,7 +37,7 @@ install.packages("essexBigdata")
 
 The `essexBigdata` package includes a number of practical files to guide participants to applications of clustering and classification techniques using R. 
 
-  * Practical1 - [Basic concepts](https://github.com/Osmahmoud/essexBigdata/blob/master/practical1.html)
+  * Practical1 - Basic concepts
   
 ```{r eval=FALSE}
 vignette("practical1", package = "essexBigdata")
@@ -48,6 +48,19 @@ vignette("practical1", package = "essexBigdata")
 ```{r eval=FALSE}
 vignette("practical2", package = "essexBigdata")
 ```
+
+  * Practical3 - Classification
+  
+```{r eval=FALSE}
+vignette("practical3", package = "essexBigdata")
+```
+
+  * Demo List of all vignettes
+  
+```{r eval=FALSE}
+vignette("htmlwg", package = "essexBigdata")
+```
+
 
 ## Further reading
 
