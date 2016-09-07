@@ -14,10 +14,10 @@ vignette: >
 We would use a dataset named `Default` from the R package `ISLR` to illustrate some classification approaches. First, we need to load in the data
 
 ```{r}
+library(ISLR)
 data("Default", package = "ISLR")
 str(Default)
 head(Default)
-library(ISLR)
 ?Default          # to show details of the data
 ```
 

@@ -23,13 +23,13 @@ x[1:25,1] <- x[1:25,1]+3
 x[1:25,2] <- x[1:25,2]-4
 ```
 
-```{r, echo=FALSE}
+```{r}
 library("ggplot2")
 ```
 
 We can plot the simulated data
-```{r, cache=TRUE}
-G.data    <- ggplot(as.data.frame(x), aes(V1,V2)) + geom_point()
+```{r}
+(G.data    <- ggplot(as.data.frame(x), aes(V1,V2)) + geom_point(size=4))
 ```
 
 We can use the function `kmeans` to group (i.e., cluster) observations into two groups
@@ -41,7 +41,7 @@ Note that the parameter of `centers`, in the `kmeans` function above, is used to
 
 After calculating observations' assignment, we can now plot the obtained underlying clusters. Assignments of observations can be plotted next to data without assignment for illustration purpose.
 ```{r, results='hold'}
-G.clust   <- ggplot(as.data.frame(x), aes(V1,V2)) + geom_point(color=my.km$cluster)
+G.clust   <- ggplot(as.data.frame(x), aes(V1,V2)) + geom_point(color=my.km$cluster, size=4)
 G.data; G.clust
 ```
 
@@ -52,7 +52,7 @@ my.km$cluster
 ```
 
 ```{r, results='hold'}
-G.clust   <- ggplot(as.data.frame(x), aes(V1,V2)) + geom_point(color=my.km$cluster)
+G.clust   <- ggplot(as.data.frame(x), aes(V1,V2)) + geom_point(color=my.km$cluster, size=4)
 G.data; G.clust
 ```
 
@@ -63,7 +63,7 @@ my.km$cluster
 ```
 
 ```{r, results='hold'}
-G.clust   <- ggplot(as.data.frame(x), aes(V1,V2)) + geom_point(color=my.km$cluster)
+G.clust   <- ggplot(as.data.frame(x), aes(V1,V2)) + geom_point(color=my.km$cluster, size=4)
 G.data; G.clust
 ```
 
@@ -74,7 +74,7 @@ my.km$cluster
 ```
 
 ```{r, results='hold'}
-G.clust   <- ggplot(as.data.frame(x), aes(V1,V2)) + geom_point(color=my.km$cluster)
+G.clust   <- ggplot(as.data.frame(x), aes(V1,V2)) + geom_point(color=my.km$cluster, size=4)
 G.data; G.clust
 ```
 
@@ -125,8 +125,7 @@ plot(hclust(d.pottery, method="average"),hang=-1,cex=.75,main="",xlab="average-l
 
 ## Additive trees
 
-Hierarchical clustering methods require objects (observations or clusters of observations) in same clusters to have identical distances to each other. In contrast, additive trees use the tree branch length to represent distances between objects. Allowing the within-cluster distances to vary among objects yields a tree diagram with varying branch lengths. Objects within a cluster can be compared by focusing on the 
-vertical distance along the branches connecting them.
+Hierarchical clustering methods require objects (observations or clusters of observations) in same clusters to have identical distances to each other. In contrast, additive trees use the tree branch length to represent distances between objects. Allowing the within-cluster distances to vary among objects yields a tree diagram with varying branch lengths. Objects within a cluster can be compared by focusing on the vertical distance along the branches connecting them.
 
 Plot an additive tree for the calculated Euclidean distances of the `pottery` data set
 
